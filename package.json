@@ -1,0 +1,15 @@
+{
+  "name": "express-js-starter",
+  "version": "1.0.0",
+  "description": "this is a simple express js boilter template to start and run back end project fast...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
+  }
+}
