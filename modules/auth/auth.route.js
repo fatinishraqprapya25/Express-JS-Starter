@@ -1,7 +1,7 @@
 const authFeatures = require("./auth.features");
 const authRouter = require("express").Router();
 
-authRouter.post("/user", authFeatures.register);
+authRouter.post("/auth", authFeatures.register);
 
 
 module.exports = authRouter;

@@ -7,12 +7,12 @@ let server;
 const main = async () => {
     try {
         const { port, mongoConnectionString } = config;
-        console.log(mongoConnectionString)
-        await mongoose.connect(mongoConnectionString)
-            .then(() => console.log("Connected to database!"));
-        server = app.listen(port, console.log("server listening at port ", port))
+        await mongoose.connect(mongoConnectionString);
+        server = app.listen(port, () => {
+            console.log(`🚀 Server listening at port ${port}`);
+        })
     } catch (err) {
-        throw new Error(err);
+        console.log("❌ Error connecting to database:", err.message)
     }
 }
 
