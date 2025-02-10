@@ -1,11 +1,18 @@
 const mongoose = require("mongoose");
+const config = require("./config");
 const app = require("./index");
 
 let server;
 
 const main = async () => {
-    mongoose.connect();
-    server = app.listen(5000, console.log("server listening at port ", 5000))
+    try {
+        const { port, mongoConnectionString } = config;
+        mongoose.connect(mongoConnectionString)
+            .then(() => console.log("Connected to database!"));
+        server = app.listen(port, console.log("server listening at port ", port))
+    } catch (err) {
+        throw new Error(err);
+    }
 }
 
 main();
