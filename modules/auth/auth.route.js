@@ -1,9 +1,14 @@
 const validateRequest = require("../../middlewares/validateRequest");
+const uploader = require("../../utils/upload");
 const authFeatures = require("./auth.features");
 const authValidations = require("./auth.validations");
 const authRouter = require("express").Router();
 
-authRouter.post("/", validateRequest(authValidations.registerValidation), authFeatures.register);
+const uploadFolderName = "avatars";
+const allowedFileTypes = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
+const maxFileSize = 15;
+
+authRouter.post("/", uploader(uploadFolderName, allowedFileTypes, maxFileSize).single("avatar"), validateRequest(authValidations.registerValidation), authFeatures.register);
 
 
 module.exports = authRouter;

@@ -10,6 +10,7 @@ const globalErrorHandler = (error, req, res, next) => {
         })
         errors = formattedError;
     }
+    console.log(error);
     sendResponse(res, 500, {
         success: false,
         message: "validations failed",
