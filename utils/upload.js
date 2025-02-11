@@ -13,7 +13,7 @@ const uploader = (folder, allowedFileTypes, maxSize) => {
     });
 
     // filtering files
-    const filefilter = (req, file, cb) => {
+    const fileFilter = (req, file, cb) => {
         if (allowedFileTypes.includes(file.mimetype)) {
             cb(null, true);
         } else {
@@ -28,6 +28,7 @@ const uploader = (folder, allowedFileTypes, maxSize) => {
         fileFilter
     });
 
+    return upload;
 }
 
 module.exports = uploader;
