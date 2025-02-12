@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 
 const deleteFile = async (filePath) => {
     try {
-        const actualPath = path.join(__dirname, filePath);
+        const actualPath = path.join(process.cwd(), filePath);
         await fs.unlink(actualPath);
         return true;
     } catch (err) {
