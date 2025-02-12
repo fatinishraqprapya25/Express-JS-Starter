@@ -7,7 +7,7 @@ const authRouter = require("express").Router();
 
 const uploadFolderName = "avatars";
 const allowedFileTypes = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
-const maxFileSize = 15;
+const maxFileSize = 5;
 
 authRouter.post("/", uploader(uploadFolderName, allowedFileTypes, maxFileSize).single("avatar"), validateRequest(authValidations.registerValidation, function (filePath) {
     deleteFile(filePath);
