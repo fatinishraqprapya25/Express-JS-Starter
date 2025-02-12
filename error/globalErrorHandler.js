@@ -1,8 +1,9 @@
 const { ZodError } = require("zod");
-const sendResponse = require("../utils/sendResponse")
+const sendResponse = require("../utils/sendResponse");
+const { MulterError } = require("multer");
 
 const globalErrorHandler = (error, req, res, next) => {
-    let errors;
+    let errors = {};
     if (error instanceof ZodError) {
         const formattedError = [];
         error.errors.map(err => {
@@ -10,9 +11,10 @@ const globalErrorHandler = (error, req, res, next) => {
         })
         errors = formattedError;
     }
+
     sendResponse(res, 500, {
         success: false,
-        message: "validations failed",
+        message: error.message,
         error: errors
     });
 }
