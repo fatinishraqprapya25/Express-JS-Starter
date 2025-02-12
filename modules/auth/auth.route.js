@@ -1,4 +1,5 @@
 const validateRequest = require("../../middlewares/validateRequest");
+const deleteFile = require("../../utils/deleteFile");
 const uploader = require("../../utils/upload");
 const authFeatures = require("./auth.features");
 const authValidations = require("./auth.validations");
@@ -8,7 +9,9 @@ const uploadFolderName = "avatars";
 const allowedFileTypes = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 const maxFileSize = 15;
 
-authRouter.post("/", uploader(uploadFolderName, allowedFileTypes, maxFileSize).single("avatar"), validateRequest(authValidations.registerValidation), authFeatures.register);
+authRouter.post("/", uploader(uploadFolderName, allowedFileTypes, maxFileSize).single("avatar"), validateRequest(authValidations.registerValidation, function (filePath) {
+    deleteFile(filePath);
+}), authFeatures.register);
 
 
 module.exports = authRouter;
