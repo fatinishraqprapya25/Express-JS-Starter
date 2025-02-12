@@ -17,3 +17,9 @@ const main = async () => {
 }
 
 main();
+
+process.on("uncaughtException", (err) => {
+    console.error("💥 Uncaught Exception! Shutting down...");
+    console.error(err.name, err.message);
+    process.exit(1);
+});
